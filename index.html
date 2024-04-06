@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <div class="content" id="about-me">
+            <div class="left">
+                <div class="left-content">
+                    <img class="photo" src="https://avatars.githubusercontent.com/u/143776322?s=400&u=ff45b7b384dd7dc85f45665edb005f10c46752a8&v=4" alt="Your Photo">
+                    <div class="name">Nicollas Jorge</div>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <div class="right">
+                <div class="description">
+                    <span class="greetings">Dear Passerby,</span>
+                    <br><br/>
+                    Thank you for taking the time to visit my portfolio! My name is Nicollas, and I am a Brazilian with a passion for game design, coupled with a fervent enthusiasm for exploring the vast realm of game development.
+                </div>
+            </div>
+        </div>
+    </div>
     
+    <div class="spacer"></div>
+
+    <div class="book-markers">
+        <span class="book-marker">About Me</span>
+        <span class="book-marker selected" onclick="showInfo('projects')">Projects</span>
+        <span class="book-marker" onclick="showInfo('career')">Career</span>
+        <span class="book-marker" onclick="showInfo('skills')">Skills</span>
+        <span class="book-marker" onclick="showInfo('references')">References</span>
+    </div>
+
+    <div class="info-container">
+        <div class="info-content" id="projects-info">
+            <h2>Projects</h2>
+            <p>Information about projects goes here...</p>
+        </div>
+        <div class="info-content hidden" id="career-info">
+            <h2>Career</h2>
+            <p>Information about career goes here...</p>
+        </div>
+        <div class="info-content hidden" id="skills-info">
+            <h2>Skills</h2>
+            <p>Information about skills goes here...</p>
+        </div>
+        <div class="info-content hidden" id="references-info">
+            <h2>References</h2>
+            <p>Information about references goes here...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
