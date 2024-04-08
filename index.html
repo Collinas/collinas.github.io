@@ -398,7 +398,397 @@
       </div>
     </div>
     
-    
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #ffd4a3;
+  color: #0d2b45
+}
+.navbar {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1000;
+}
+
+.fixed-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffaa5e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-markers {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+.book-marker {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #203c56;
+  background-color: #ffd4a3;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.book-marker:hover {
+  background-color: #ffaa5e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.book-marker:active {
+  background-color: #0d2b45;
+}
+.book-marker.selected {
+  background-color: #ffaa5e;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 1px solid #ffd4a3;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #ffd4a3;
+}
+.content {
+  display: flex;
+}
+.hidden {
+  display: none;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+}
+
+.photo {
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 20px;
+  font-size: 28px;
+}
+
+.description {
+  font-size: 24px;
+  text-align: justify;
+  line-height: 1.6;
+  width: 100%;
+}
+
+.right {
+  margin-top: 50px;
+  margin-left: 50px;
+  flex: 1;
+  padding-left: 20px;
+}
+
+.greetings {
+  font-weight: bold;
+  color: #203c56; /* Changing color of greetings */
+}
+.separator {
+  width: 75%; /* Adjust the width of the separator as needed */
+  margin: 20px auto; /* Centering the separator horizontally */
+  border: none; /* Remove default border */
+  border-top: 2px solid #d08159; /* Adding border at the top */
+}
+.spacer {
+  height: 50px; /* Adjust the height as needed */
+}
+.info-container {
+  width: 80%;
+  margin: 0 auto; /* Centering the container horizontally */
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffd4a3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Aligning content to the left */
+}
+.project-cards-container {
+  display: flex;
+  justify-content: space-between; /* Aligns the cards at each end of the container */
+  padding-left: 450px;
+  padding-right: 450px;
+}
+
+.project-card {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffaa5e;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  cursor: pointer; /* Change cursor to pointer */
+  transition: transform 0.3s ease; /* Add transition effect for smoother hover */
+}
+.project-card:hover {
+  transform: scale(1.05); /* Scale up on hover */
+}
+.project-card.selected {
+  background-color: #ffd4a3;
+}
+
+.project-image {
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.project-title {
+  flex: 1;
+  padding: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.project-description {
+  margin-top: 20px;
+  text-align: justify; /* Justifying the text */
+  line-height: 1.6; /* Adding spacing between lines */
+  width: 100%; /* Full width */
+}
+
+.project-description.hidden {
+  display: none;
+}
+.bottom-container {
+  background-color: #ffd4a3;
+  padding: 20px;
+  text-align: center;
+  margin-top: 500px;
+}
+
+.social-links img {
+  width: 40px; /* Adjust the size of the social media icons */
+  margin: 0 10px; /* Add spacing between the icons */
+}
+.career-container {
+  display: flex;
+  justify-content: space-between;
+}
+.list-group-item {
+  font-size: 12px;
+  font-weight: bold;
+}
+.list-group-horizontal {
+  background-color: #ffaa5e;
+}
+.tags {
+  display: flex;
+  width: 300%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.tags a {
+  margin-right: 50px;
+}
+.tags a i {
+  font-size: 48px;
+  color: #203c56;
+}
+.tag-container {
+  display: inline-block;
+  border: 2px solid #0d2b45; /* Border around the tag and tag value */
+  border-radius: 5px; /* Rounded corners */
+  margin-right: 10px; /* Add margin between tag containers */
+}
+
+.tag {
+  background-color: #0d2b45; /* Background color for tags */
+  color: #ffd4a3;
+  padding: 4px 4px; /* Add padding to provide space around the text */
+  border: 1px solid #0d2b45; /* Border around the tag and tag value */
+  border-radius: 1px; /* Rounded corners */
+}
+
+.tag-value {
+  background-color: #ffaa5e; /* Background color for tag values */
+  padding: 4px 4px; /* Add padding to provide space around the text */
+  margin-left: -7px;
+  border: 1px solid #0d2b45; /* Border around the tag and tag value */
+  border-radius: 2px; /* Rounded corners */
+}
+
+.riflogo {
+  margin-left: -100px;
+  margin-bottom: 50px;
+}
+
+.riflogo2 {
+  margin-bottom: 50px;
+}
+
+.career-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.career-column {
+  flex: 1;
+  position: relative; /* Ensure relative positioning */
+}
+
+.career-column:first-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px; /* Adjust width of the vertical line */
+  background-color: #d08159; /* Change color of the line */
+}
+
+.education-list,
+.work-experience-list {
+  list-style-type: none;
+  padding: 0;
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+.education-list li,
+.work-experience-list li {
+  margin-bottom: 10px;
+}
+.skill {
+  margin-bottom: 50px; /* Increased margin to separate skill categories */
+  text-align: center;
+}
+
+.skill h3 {
+  margin-bottom: 10px;
+  text-align: center; /* Center-align skill titles */
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align all skill graphs */
+  margin-top: 50px;
+}
+
+.skill-graph {
+  width: 600px;
+  height: 50px;
+  background-color: #ffaa5e; /* Changed background color */
+  border-radius: 5px;
+  margin-bottom: 10px; /* Added margin between skill graphs */
+}
+
+.skill-level {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #d08159; /* Changed color of skill level bars */
+  color: #0d2b45;
+  text-align: left;
+  padding-left: 10px;
+  line-height: 50px;
+  font-weight: bold;
+}
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align all skill graphs */
+}
+
+/* Center-align skill graphs for Engines and 3D Modelling */
+.skill.engines-3d {
+  align-items: center;
+}
+.video {
+  align-items: center;
+  margin-left: 450px;
+  margin-top: 50px;
+}
+.bottom-container {
+  background-color: #ffd4a3;
+  padding: 20px;
+  text-align: center;
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.social-links {
+    text-align: right;
+    margin-top: -50px;
+}
+
+.social-links a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  background-color: #ffaa5e;
+  border-radius: 50%;
+  line-height: 45px;
+  text-align: center;
+  color: #0d2b45; 
+}
+
+.social-links a:hover {
+  background-color: #ffd4a3; /* Change background color on hover */
+}
+
+.social-links a i {
+  font-size: 24px; /* Adjust icon size */
+}
+
+/* Additional styling as needed */
+h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #203c56;
+}
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+h3 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
