@@ -1,878 +1,1145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nicollas Jorge</title>
-    <link rel = "icon" type="image/png" href="https://i.imgur.com/lfX23Lr.png">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #ffd4a3;
-  color: #0d2b45
-}
-.navbar {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  z-index: 1000;
-}
 
-.fixed-navbar {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #ffaa5e;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicollas Jorge</title>
+  <link rel="icon" type="image/png"
+    href="https://img.freepik.com/free-vector/flat-design-mountain-range-silhouette_23-2150491868.jpg?t=st=1716459838~exp=1716463438~hmac=73b392c1aad43b14deb2a029b55bda5195cfa924ab33fdf663354afd77ece546&w=2000" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffd4a3;
+      color: #0d2b45;
+      width: 100%;
+      overflow-x: hidden;
+      /* Prevent horizontal overflow */
+    }
 
-.book-markers {
-  display: flex;
-  justify-content: center;
-  margin: 15px;
-}
-.book-marker {
-  display: inline-block;
-  margin-right: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #203c56;
-  background-color: #ffd4a3;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-.book-marker:hover {
-  background-color: #ffaa5e;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.book-marker:active {
-  background-color: #0d2b45;
-}
-.book-marker.selected {
-  background-color: #ffaa5e;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 20px;
-  border: 1px solid #ffd4a3;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: #ffd4a3;
-}
-.content {
-  display: flex;
-}
-.hidden {
-  display: none;
-}
+    .navbar {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 1000;
+    }
 
-.left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    .fixed-navbar {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #ffaa5e;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+      /* 2px = 0.125rem, 4px = 0.25rem */
+    }
 
-.left-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: max-content;
-}
+    .book-markers {
+      display: flex;
+      justify-content: center;
+      margin: 0.9375rem;
+      /* 15px = 0.9375rem */
+    }
 
-.photo {
-  max-width: 200px;
-  border-radius: 50%;
-}
+    .book-marker {
+      display: inline-block;
+      margin-right: 1.25rem;
+      /* 20px = 1.25rem */
+      font-size: 1.125rem;
+      /* 18px = 1.125rem */
+      font-weight: bold;
+      color: #203c56;
+      background-color: #ffd4a3;
+      padding: 0.625rem 1.25rem;
+      /* 10px = 0.625rem, 20px = 1.25rem */
+      border-radius: 0.3125rem;
+      /* 5px = 0.3125rem */
+      cursor: pointer;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+      /* 2px = 0.125rem, 4px = 0.25rem */
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
-.name {
-  margin-top: 20px;
-  font-size: 28px;
-}
+    .book-marker:hover {
+      background-color: #ffaa5e;
+      box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+      /* 4px = 0.25rem, 6px = 0.375rem */
+    }
 
-.description {
-  font-size: 24px;
-  text-align: justify;
-  line-height: 1.6;
-  width: 100%;
-}
+    .book-marker:active {
+      background-color: #0d2b45;
+    }
 
-.right {
-  margin-top: 50px;
-  margin-left: 50px;
-  flex: 1;
-  padding-left: 20px;
-}
+    .book-marker.selected {
+      background-color: #ffaa5e;
+      box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+      /* 4px = 0.25rem, 6px = 0.375rem */
+    }
 
-.greetings {
-  font-weight: bold;
-  color: #203c56; /* Changing color of greetings */
-}
-.separator {
-  width: 75%; /* Adjust the width of the separator as needed */
-  margin: 20px auto; /* Centering the separator horizontally */
-  border: none; /* Remove default border */
-  border-top: 2px solid #d08159; /* Adding border at the top */
-}
-.spacer {
-  height: 50px; /* Adjust the height as needed */
-}
-.info-container {
-  width: 80%;
-  margin: 0 auto; /* Centering the container horizontally */
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #ffd4a3;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Aligning content to the left */
-}
-.project-cards-container {
-  display: flex;
-  justify-content: space-between; /* Aligns the cards at each end of the container */
-  padding-left: 450px;
-  padding-right: 450px;
-}
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      /* Alterado para ocupar toda a largura da tela */
+      max-width: 80%;
+      /* Adicionado para limitar a largura máxima e centralizar */
+      margin: 0 auto;
+      margin-top: 1.25rem;
+      /* 20px = 1.25rem */
+      border: 0.0625rem solid #ffd4a3;
+      /* 1px = 0.0625rem */
+      border-radius: 0.625rem;
+      /* 10px = 0.625rem */
+      padding: 1.25rem;
+      /* 20px = 1.25rem */
+      background-color: #ffd4a3;
+    }
 
-.project-card {
-  width: 48%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffaa5e;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  cursor: pointer; /* Change cursor to pointer */
-  transition: transform 0.3s ease; /* Add transition effect for smoother hover */
-}
-.project-card:hover {
-  transform: scale(1.05); /* Scale up on hover */
-}
-.project-card.selected {
-  background-color: #ffd4a3;
-}
+    .content {
+      display: flex;
+    }
 
-.project-image {
-  width: 100%;
-  height: 150px;
-  background-size: cover;
-  background-position: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
+    .hidden {
+      display: none;
+    }
 
-.project-title {
-  flex: 1;
-  padding: 20px;
-  font-weight: bold;
-  text-align: center;
-}
-.project-description {
-  margin-top: 20px;
-  text-align: justify; /* Justifying the text */
-  line-height: 1.6; /* Adding spacing between lines */
-  width: 100%; /* Full width */
-}
+    .left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-.project-description.hidden {
-  display: none;
-}
-.bottom-container {
-  background-color: #ffd4a3;
-  padding: 20px;
-  text-align: center;
-  margin-top: 500px;
-}
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: max-content;
+    }
 
-.social-links img {
-  width: 40px; /* Adjust the size of the social media icons */
-  margin: 0 10px; /* Add spacing between the icons */
-}
-.career-container {
-  display: flex;
-  justify-content: space-between;
-}
-.list-group-item {
-  font-size: 12px;
-  font-weight: bold;
-}
-.list-group-horizontal {
-  background-color: #ffaa5e;
-}
-.tags {
-  display: flex;
-  width: 300%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.tags a {
-  margin-right: 50px;
-}
-.tags a i {
-  font-size: 48px;
-  color: #203c56;
-}
-.tag-container {
-  display: inline-block;
-  border: 2px solid #0d2b45; /* Border around the tag and tag value */
-  border-radius: 5px; /* Rounded corners */
-  margin-right: 10px; /* Add margin between tag containers */
-}
+    .photo {
+      max-width: 12.5rem;
+      /* 200px = 12.5rem */
+      border-radius: 50%;
+      border: 5px solid #d08159;
+    }
 
-.tag {
-  background-color: #0d2b45; /* Background color for tags */
-  color: #ffd4a3;
-  padding: 4px 4px; /* Add padding to provide space around the text */
-  border: 1px solid #0d2b45; /* Border around the tag and tag value */
-  border-radius: 1px; /* Rounded corners */
-}
+    .name {
+      margin-top: 1.25rem;
+      /* 20px = 1.25rem */
+      font-size: 1.75rem;
+      /* 28px = 1.75rem */
+    }
 
-.tag-value {
-  background-color: #ffaa5e; /* Background color for tag values */
-  padding: 4px 4px; /* Add padding to provide space around the text */
-  margin-left: -7px;
-  border: 1px solid #0d2b45; /* Border around the tag and tag value */
-  border-radius: 2px; /* Rounded corners */
-}
+    .description {
+      font-size: 1.5rem;
+      /* 24px = 1.5rem */
+      text-align: justify;
+      line-height: 1.6;
+      width: 100%;
+    }
 
-.riflogo {
-  margin-left: -100px;
-  margin-bottom: 50px;
-}
+    .right {
+      margin-top: 3.125rem;
+      /* 50px = 3.125rem */
+      margin-left: 3.125rem;
+      /* 50px = 3.125rem */
+      flex: 1;
+      padding-left: 1.25rem;
+      /* 20px = 1.25rem */
+    }
 
-.riflogo2 {
-  margin-bottom: 50px;
-}
+    .greetings {
+      font-weight: bold;
+      color: #203c56;
+      /* Changing color of greetings */
+    }
 
-.career-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px; /* Adjust margin as needed */
-}
+    .separator {
+      width: 75%;
+      /* Adjust the width of the separator as needed */
+      margin: 1.25rem auto;
+      /* 20px = 1.25rem */
+      border: none;
+      /* Remove default border */
+      border-top: 0.125rem solid #d08159;
+      /* 2px = 0.125rem */
+    }
 
-.career-column {
-  flex: 1;
-  position: relative; /* Ensure relative positioning */
-}
+    .spacer {
+      height: 3.125rem;
+      /* 50px = 3.125rem */
+    }
 
-.career-column:first-child::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 1px; /* Adjust width of the vertical line */
-  background-color: #d08159; /* Change color of the line */
-}
+    .info-container {
+      width: 100%;
+      /* Alterado para ocupar toda a largura da tela */
+      max-width: 80%;
+      /* Adicionado para limitar a largura máxima e centralizar */
+      margin: 0 auto;
+      /* Centering the container horizontally */
+      margin-top: 1.25rem;
+      /* 20px = 1.25rem */
+      padding: 1.25rem;
+      /* 20px = 1.25rem */
+      background-color: #ffd4a3;
+      border-radius: 0.625rem;
+      /* 10px = 0.625rem */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Aligning content to the left */
+    }
 
-.education-list,
-.work-experience-list {
-  list-style-type: none;
-  padding: 0;
-  margin-right: 100px;
-  margin-left: 100px;
-}
+    .project-cards-container {
+      display: flex;
+      justify-content: center;
+      padding-left: 0.25rem;
+      padding-right: 0.25rem;
+      box-sizing: border-box;
+      flex-wrap: nowrap;
+      /* Ensures items stay in the same line */
+    }
 
-.education-list li,
-.work-experience-list li {
-  margin-bottom: 10px;
-}
-.skill {
-  margin-bottom: 50px; /* Increased margin to separate skill categories */
-  text-align: center;
-}
+    .project-card {
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffaa5e;
+      border-radius: 1.25rem;
+      /* 20px = 1.25rem */
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+      /* 2px = 0.125rem, 4px = 0.25rem */
+      margin: 1.25rem;
+      /* 20px = 1.25rem */
+      cursor: pointer;
+      /* Change cursor to pointer */
+      transition: transform 0.3s ease;
+      /* Add transition effect for smoother hover */
+    }
 
-.skill h3 {
-  margin-bottom: 10px;
-  text-align: center; /* Center-align skill titles */
-}
+    .project-card:hover {
+      transform: scale(1.05);
+      /* Scale up on hover */
+    }
 
-.skills-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center-align all skill graphs */
-  margin-top: 50px;
-}
+    .project-card.selected {
+      background-color: #ffd4a3;
+    }
 
-.skill-graph {
-  width: 600px;
-  height: 50px;
-  background-color: #ffaa5e; /* Changed background color */
-  border-radius: 5px;
-  margin-bottom: 10px; /* Added margin between skill graphs */
-}
+    .project-image {
+      width: 100%;
+      height: 9.375rem;
+      /* 150px = 9.375rem */
+      background-size: cover;
+      background-position: center;
+      border-top-left-radius: 0.625rem;
+      /* 10px = 0.625rem */
+      border-top-right-radius: 0.625rem;
+      /* 10px = 0.625rem */
+    }
 
-.skill-level {
-  height: 100%;
-  border-radius: 5px;
-  background-color: #d08159; /* Changed color of skill level bars */
-  color: #0d2b45;
-  text-align: left;
-  padding-left: 10px;
-  line-height: 50px;
-  font-weight: bold;
-}
-.skills-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center-align all skill graphs */
-}
+    .project-title {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      /* 20px = 1.25rem */
+      font-weight: bold;
+      text-align: center;
+    }
 
-/* Center-align skill graphs for Engines and 3D Modelling */
-.skill.engines-3d {
-  align-items: center;
-}
-.video {
-  align-items: center;
-  margin-left: 450px;
-  margin-top: 50px;
-}
-.bottom-container {
-  background-color: #ffd4a3;
-  padding: 20px;
-  text-align: center;
-}
+    .project-description {
+      margin-top: 2rem;
+      /* 20px = 1.25rem */
+      text-align: justify;
+      /* Justifying the text */
+      line-height: 1.6;
+      /* Adding spacing between lines */
+      width: 100%;
+      /* Full width */
+    }
 
-.contact-info {
-  text-align: left;
-}
+    .project-description.hidden {
+      display: none;
+    }
 
-.social-links {
-    text-align: right;
-    margin-top: -50px;
-}
+    .bottom-container {
+      background-color: #ffd4a3;
+      padding: 1.25rem;
+      /* 20px = 1.25rem */
+      text-align: center;
+      margin-top: 10rem;
+      /* 500px = 31.25rem */
+    }
 
-.social-links a {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
-  background-color: #ffaa5e;
-  border-radius: 50%;
-  line-height: 45px;
-  text-align: center;
-  color: #0d2b45; 
-}
+    .social-links img {
+      width: 2.5rem;
+      /* 40px = 2.5rem */
+      margin: 0 0.625rem;
+      /* 10px = 0.625rem */
+    }
 
-.social-links a:hover {
-  background-color: #ffd4a3; /* Change background color on hover */
-}
+    .career-container {
+      display: flex;
+      justify-content: space-between;
+    }
 
-.social-links a i {
-  font-size: 24px; /* Adjust icon size */
-}
+    .list-group-item {
+      font-size: 0.75rem;
+      /* 12px = 0.75rem */
+      font-weight: bold;
+    }
 
-/* Additional styling as needed */
-h4 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: #203c56;
-}
-h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-h3 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
+    .list-group-horizontal {
+      background-color: #ffaa5e;
+    }
 
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="content" id="about-me">
-        <div class="left">
-          <div class="left-content">
+    .tags {
+      display: flex;
+      width: 100%;
+      margin-top: 1.25rem;
+      /* 20px = 1.25rem */
+      margin-bottom: 1.25rem;
+      /* 20px = 1.25rem */
+    }
+
+    a {
+      margin-right: 2rem;
+    }
+
+    .tags a i {
+      font-size: 3rem;
+      /* 48px = 3rem */
+      color: #203c56;
+    }
+
+    .tag-container {
+      display: inline-block;
+      border: 0.125rem solid #0d2b45;
+      /* 2px = 0.125rem */
+      border-radius: 0.3125rem;
+      /* 5px = 0.3125rem */
+      margin-right: 0.625rem;
+      /* 10px = 0.625rem */
+    }
+
+    .tag {
+      background-color: #0d2b45;
+      /* Background color for tags */
+      color: #ffd4a3;
+      padding: 0.25rem 0.25rem;
+      /* 4px = 0.25rem */
+      border: 0.0625rem solid #0d2b45;
+      /* 1px = 0.0625rem */
+      border-radius: 0.0625rem;
+      /* 1px = 0.0625rem */
+    }
+
+    .tag-value {
+      background-color: #ffaa5e;
+      /* Background color for tag values */
+      padding: 0.25rem 0.25rem;
+      /* 4px = 0.25rem */
+      margin-left: -0.4375rem;
+      /* -7px = -0.4375rem */
+      border: 0.0625rem solid #0d2b45;
+      /* 1px = 0.0625rem */
+      border-radius: 0.125rem;
+      /* 2px = 0.125rem */
+    }
+
+    .riflogo {
+      margin-bottom: 3.125rem;
+      /* 50px = 3.125rem */
+      margin-left: -6rem;
+    }
+
+    .riflogo2 {
+      margin-bottom: 3.125rem;
+      /* 50px = 3.125rem */
+    }
+
+    .career-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      /* 20px = 1.25rem */
+    }
+
+    .career-column {
+      flex: 1;
+      position: relative;
+      /* Ensure relative positioning */
+    }
+
+    .career-column:first-child::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 0.0625rem;
+      /* 1px = 0.0625rem */
+      background-color: #d08159;
+      /* Change color of the line */
+    }
+
+    .education-list,
+    .work-experience-list {
+      list-style-type: none;
+      padding: 0;
+      margin-right: 6.25rem;
+      /* 100px = 6.25rem */
+      margin-left: 6.25rem;
+      /* 100px = 6.25rem */
+    }
+
+    .education-list li,
+    .work-experience-list li {
+      margin-bottom: 0.625rem;
+      /* 10px = 0.625rem */
+    }
+
+    .skill {
+      margin-bottom: 3.125rem;
+      /* 50px = 3.125rem */
+      text-align: center;
+    }
+
+    .skill h3 {
+      margin-bottom: 0.625rem;
+      /* 10px = 0.625rem */
+      text-align: center;
+      /* Center-align skill titles */
+    }
+
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Center-align all skill graphs */
+      margin-top: 3.125rem;
+      /* 50px = 3.125rem */
+    }
+
+    .skill-graph {
+      width: 37.5rem;
+      /* 600px = 37.5rem */
+      height: 3.125rem;
+      /* 50px = 3.125rem */
+      background-color: #ffaa5e;
+      /* Changed background color */
+      border-radius: 0.3125rem;
+      /* 5px = 0.3125rem */
+      margin-bottom: 0.625rem;
+      /* 10px = 0.625rem */
+    }
+
+    .skill-level {
+      height: 100%;
+      border-radius: 0.3125rem;
+      /* 5px = 0.3125rem */
+      background-color: #d08159;
+      /* Changed color of skill level bars */
+      color: #0d2b45;
+      text-align: left;
+      padding-left: 0.625rem;
+      /* 10px = 0.625rem */
+      line-height: 3.125rem;
+      /* 50px = 3.125rem */
+      font-weight: bold;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Center-align all skill graphs */
+    }
+
+    /* Center-align skill graphs for Engines and 3D Modelling */
+    .skill.engines-3d {
+      align-items: center;
+    }
+
+    .video {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /*margin-left: 28.125rem; */
+      /* 450px = 28.125rem */
+      margin-top: 3.125rem;
+      /* 50px = 3.125rem */
+    }
+
+    .contact-info {
+      text-align: left;
+    }
+
+    .social-links {
+      text-align: right;
+      margin-top: -3.125rem;
+      /* -50px = -3.125rem */
+    }
+
+    .social-links a {
+      display: inline-block;
+      width: 2.5rem;
+      /* 40px = 2.5rem */
+      height: 2.5rem;
+      /* 40px = 2.5rem */
+      margin: 0 0.625rem;
+      /* 10px = 0.625rem */
+      background-color: #ffaa5e;
+      border-radius: 50%;
+      line-height: 2.8125rem;
+      /* 45px = 2.8125rem */
+      text-align: center;
+      color: #0d2b45;
+    }
+
+    .social-links a:hover {
+      background-color: #ffd4a3;
+      /* Change background color on hover */
+    }
+
+    .social-links a i {
+      font-size: 1.5rem;
+      /* 24px = 1.5rem */
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+    }
+
+    .thumbnails {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.25rem;
+      /* 20px / 16px */
+      margin-bottom: 1.25rem;
+      /* 20px / 16px */
+    }
+
+    .thumbnail {
+      width: 6.25rem;
+      /* 100px / 16px */
+      height: 6.25rem;
+      /* 100px / 16px */
+      object-fit: cover;
+      margin: 0 0.625rem;
+      /* 10px / 16px */
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .thumbnail:hover {
+      transform: scale(1.1);
+    }
+
+    .main-photo {
+      width: 37.5rem;
+      /* 600px / 16px */
+      height: 25rem;
+      /* 400px / 16px */
+      background-color: #2b2b2b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .highlighted {
+      border: 0.125rem solid #203c56;
+      /* 2px / 16px */
+      padding: 0.625rem;
+      /* 10px / 16px */
+      box-shadow: 0 0 0.625rem rgba(0, 2, 66, 0.5);
+      /* 10px / 16px */
+    }
+
+    /* Additional styling as needed */
+    h4 {
+      font-size: 1.125rem;
+      /* 18px = 1.125rem */
+      margin-bottom: 0.625rem;
+      /* 10px = 0.625rem */
+      font-weight: bold;
+      color: #203c56;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      /* 24px = 1.5rem */
+      margin-bottom: 0.625rem;
+      /* 10px = 0.625rem */
+      text-align: center;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 1.125rem;
+      /* 18px = 1.125rem */
+      line-height: 1.6;
+    }
+
+    h3 {
+      font-size: 2.25rem;
+      /* 36px = 2.25rem */
+      margin-bottom: 0.625rem;
+      /* 10px = 0.625rem */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content" id="about-me">
+      <div class="left">
+        <div class="left-content">
+          <img class="photo"
+            src="https://avatars.githubusercontent.com/u/143776322?s=400&u=ff45b7b384dd7dc85f45665edb005f10c46752a8&v=4"
+            id="minhafoto" />
+          <div class="name">NICOLLAS JORGE</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="description">
+          <span class="greetings">Dear Passerby,</span>
+          <br /><br />
+          Thank you for taking the time to visit my portfolio! My name is
+          Nicollas, and I am a Brazilian with a passion for game design,
+          coupled with a fervent enthusiasm for exploring the vast realm of
+          game development.
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="separator" />
+  <div class="navbar" id="navbar">
+    <div class="book-markers">
+      <span class="book-marker" onclick="highlightAboutMe()">About Me <i class="fa-solid fa-arrow-up"></i></span>
+      <span class="book-marker" onclick="showInfo('projects')">Projects <i
+          class="fa-solid fa-diagram-project"></i></span>
+      <span class="book-marker" onclick="showInfo('career')">Career <i class="fa-solid fa-briefcase"></i></span>
+      <span class="book-marker" onclick="showInfo('skills')">Skills <i class="fa-solid fa-dice"></i></span>
+      <span class="book-marker" onclick="highlightBottomBar()">Socials <i class="fa-solid fa-arrow-down"></i></span>
+    </div>
+  </div>
+  <hr class="separator" />
+  <div class="info-container">
+    <div class="info-content hidden" id="projects-info">
+      <h2>Projects</h2>
+      <div class="project-cards-container">
+        <div class="project-card" onclick="showProjectDescription('project1')">
+          <div class="project-image" style="background-image: url('https://i.imgur.com/QlBnJ2o.jpeg')"></div>
+          <div class="project-title">
+            Social Project: Accessible Board Game for Seniors
+          </div>
+        </div>
+        <div class="project-card" onclick="showProjectDescription('project2')">
+          <div class="project-image" style="background-image: url('https://i.imgur.com/vvXEpfH.png')"></div>
+          <div class="project-title">"Cowgato"</div>
+        </div>
+        <div class="project-card" onclick="showProjectDescription('project3')">
+          <div class="project-image" style="
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDpAZXATsN9Eour4gy2oa1VKKNVb5R5CjPEThokL3JQQ&s');
+              "></div>
+          <div class="project-title">BCS Projects</div>
+        </div>
+      </div>
+      <div class="project-description hidden" id="project1-description">
+        <h3>Social Project: Accessible Board Game for Seniors</h3>
+        <div class="tags">
+          <div class="tag-container">
+            <span class="tag">Build Date: </span>
+            <span class="tag-value">Ongoing</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Category: </span>
+            <span class="tag-value">Game</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Engine: </span>
+            <span class="tag-value">Construct 3</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Experience: </span>
+            <span class="tag-value">Hybrid</span>
+          </div>
+        </div>
+        <div class="tags">
+          <a href="https://collinas.itch.io/rich-in-fish-companion-app" target="_blank" title="Digital App">
+            <i class="fa-solid fa-gamepad"></i>
+          </a>
+          <a href="https://github.com/Collinas/RichinFishProject" target="_blank" title="Github Project">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.artstation.com/artwork/Za4bd1" target="_blank" title="Project Artwork">
+            <i class="fa-brands fa-artstation"></i>
+          </a>
+        </div>
+        <div class="riflogo">
+          <img width="400" height="200" src="https://i.imgur.com/hKI7UWJ.png" />
+        </div>
+        <p>
+          "Rich in Fish" is a tabletop game designed with key mechanics
+          centered around risk-taking, variable choices, and upgrades, all
+          encapsulated within a straightforward gameplay structure divided
+          into three main components per round: the digital app phase, the
+          decision-making turn, and the option to upgrade.
+        </p>
+        <p>
+          Over a two-month production period, I served as the Scrum Master and
+          also took charge of designing the gameplay (both digital and
+          tabletop), creating pixel art for certain cards, and crafting the
+          tabletop artwork. Responsibilities excluded handling UI/UX and sound
+          design for the digital app, drafting rules, and producing vector
+          images for specific cards.
+        </p>
+        <p>
+          The game was meticulously crafted to appeal to a broad audience,
+          with a special emphasis on making it accessible to seniors,
+          individuals with cognitive impairments, those with visual
+          challenges, and those who may be illiterate. As this project was
+          part of a college endeavor, we collaborated closely with "Vitalità,"
+          a center dedicated to aging and longevity, catering primarily to
+          seniors in need of support, particularly in fostering social
+          engagement and intergenerational connections.
+        </p>
+        <div class="gallery">
+          <div class="main-photo">
             <img
-              class="photo"
-              src="https://avatars.githubusercontent.com/u/143776322?s=400&u=ff45b7b384dd7dc85f45665edb005f10c46752a8&v=4"
-              alt="Your Photo"
-              id="minhafoto"
-            />
-            <div class="name">NICOLLAS JORGE</div>
+              src="https://cdnb.artstation.com/p/assets/images/images/076/198/917/large/nicollas-jorge-ttv2labelsnames.jpg?1716407386"
+              alt="Main Photo" id="main-photo" />
           </div>
-        </div>
-        <div class="right">
-          <div class="description">
-            <span class="greetings">Dear Passerby,</span>
-            <br /><br />
-            Thank you for taking the time to visit my portfolio! My name is
-            Nicollas, and I am a Brazilian with a passion for game design,
-            coupled with a fervent enthusiasm for exploring the vast realm of
-            game development.
+          <div class="thumbnails">
+            <img
+              src="https://cdnb.artstation.com/p/assets/images/images/076/198/917/large/nicollas-jorge-ttv2labelsnames.jpg?1716407386"
+              alt="Photo 1" class="thumbnail" onclick="showImage(this)" />
+            <img
+              src="https://cdnb.artstation.com/p/assets/images/images/076/198/717/large/nicollas-jorge-frente001.jpg?1716406919"
+              alt="Photo 2" class="thumbnail" onclick="showImage(this)" />
+            <img
+              src="https://cdna.artstation.com/p/assets/images/images/076/198/732/large/nicollas-jorge-frente003-005.jpg?1716406946"
+              alt="Photo 3" class="thumbnail" onclick="showImage(this)" />
+            <img
+              src="https://cdna.artstation.com/p/assets/images/images/076/198/738/large/nicollas-jorge-frente006-015.jpg?1716406952"
+              alt="Photo 4" class="thumbnail" onclick="showImage(this)" />
           </div>
-        </div>
-      </div>
-    </div>
-    <hr class="separator" />
-    <div class="navbar" id="navbar">
-      <div class="book-markers">
-        <span class="book-marker"
-          ><i class="fa-solid fa-arrow-up"></i> About Me</span
-        >
-        <span class="book-marker" onclick="showInfo('projects')">Projects</span>
-        <span class="book-marker" onclick="showInfo('career')">Career</span>
-        <span class="book-marker" onclick="showInfo('skills')">Skills</span>
-        <span class="book-marker"
-          >Socials <i class="fa-solid fa-arrow-down"></i
-        ></span>
-      </div>
-    </div>
-    <hr class="separator" />
-    <div class="info-container">
-      <div class="info-content hidden" id="projects-info">
-        <h2>Projects</h2>
-        <div class="project-cards-container">
-          <div
-            class="project-card"
-            onclick="showProjectDescription('project1')"
-          >
-            <div
-              class="project-image"
-              style="background-image: url('https://i.imgur.com/FRlmvhg.png')"
-            ></div>
-            <div class="project-title">
-              Social Project: Accessible Board Game for Seniors
-            </div>
-          </div>
-          <div
-            class="project-card"
-            onclick="showProjectDescription('project2')"
-          >
-            <div
-              class="project-image"
-              style="background-image: url('https://i.imgur.com/vvXEpfH.png')"
-            ></div>
-            <div class="project-title">"Cowgato"</div>
-          </div>
-        </div>
-        <div class="project-description hidden" id="project1-description">
-          <h3>Social Project: Accessible Board Game for Seniors</h3>
-          <div class="tags">
-            <div class="tag-container">
-              <span class="tag">Build Date: </span>
-              <span class="tag-value">Ongoing</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Category: </span>
-              <span class="tag-value">Game</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Engine: </span>
-              <span class="tag-value">Construct 3</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Experience: </span>
-              <span class="tag-value">Hybrid</span>
-            </div>
-          </div>
-
-          <div class="tags">
-            <a href="" 
-            target="_blank" 
-            title="Digital App">
-              <i class="fa-solid fa-gamepad"></i>
-            </a>
-            <a
-              href=""
-              target="_blank"
-              title="Github Project"
-            >
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a
-              href="https://www.artstation.com/artwork/Za4bd1"
-              target="_blank"
-              title="Project Artwork"
-            >
+          <h2>
+            More arts in:
+            <a href="https://www.artstation.com/artwork/Za4bd1" target="_blank" title="Project Artwork">
               <i class="fa-brands fa-artstation"></i>
             </a>
-          </div>
-          <div class="riflogo">
-            <img
-              width="400"
-              height="200"
-              src="https://i.imgur.com/hKI7UWJ.png"
-            />
-          </div>
-          <p>
-            "Rich in Fish" is a tabletop game designed with key mechanics
-            centered around risk-taking, variable choices, and upgrades, all
-            encapsulated within a straightforward gameplay structure divided
-            into three main components per round: the digital app phase, the
-            decision-making turn, and the option to upgrade.
-          </p>
-          <p>
-            Over a two-month production period, I served as the Scrum Master and
-            also took charge of designing the gameplay (both digital and
-            tabletop), creating pixel art for certain cards, and crafting the
-            tabletop artwork. Responsibilities excluded handling UI/UX and sound
-            design for the digital app, drafting rules, and producing vector
-            images for specific cards.
-          </p>
-          <p>
-            The game was meticulously crafted to appeal to a broad audience,
-            with a special emphasis on making it accessible to seniors,
-            individuals with cognitive impairments, those with visual
-            challenges, and those who may be illiterate. As this project was
-            part of a college endeavor, we collaborated closely with "Vitalità,"
-            a center dedicated to aging and longevity, catering primarily to
-            seniors in need of support, particularly in fostering social
-            engagement and intergenerational connections.
-          </p>
+          </h2>
         </div>
-        <div class="project-description hidden" id="project2-description">
-          <h3>Cowgato</h3>
-          <div class="tags">
-            <div class="tag-container">
-              <span class="tag">Build Date: </span>
-              <span class="tag-value">29/11/23</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Category: </span>
-              <span class="tag-value">Game</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Engine: </span>
-              <span class="tag-value">Unity</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Programming: </span>
-              <span class="tag-value">C#</span>
-            </div>
-            <div class="tag-container">
-              <span class="tag">Experience: </span>
-              <span class="tag-value">Digital</span>
-            </div>
-          </div>
+      </div>
 
-          <div class="tags">
-            <a
-              href="https://llsnicollas.itch.io/cowgato"
-              target="_blank"
-              title="Game"
-            >
-              <i class="fa-solid fa-gamepad"></i>
-            </a>
-            <a
-              href=""
-              target="_blank"
-              title="Github Project"
-            >
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a
-              href="https://www.artstation.com/artwork/m8No31"
-              target="_blank"
-              title="Project Artwork"
-            >
-              <i class="fa-brands fa-artstation"></i>
-            </a>
+      <div class="project-description hidden" id="project2-description">
+        <h3>Cowgato</h3>
+        <div class="tags">
+          <div class="tag-container">
+            <span class="tag">Build Date: </span>
+            <span class="tag-value">29/11/23</span>
           </div>
-          <div class="riflogo2">
-            <img
-              width="200"
-              height="200"
-              src="https://img.itch.zone/aW1nLzEzNjgyMDExLnBuZw==/347x500/Yy8ZbD.png"
-            />
+          <div class="tag-container">
+            <span class="tag">Category: </span>
+            <span class="tag-value">Game</span>
           </div>
-          <p>
-            "Cowgato" was the project I developed during my first semester of
-            Digital Games at PUC Campinas. Its aim was to create a 3D project
-            with an environmental theme. Therefore, I chose to focus on animal
-            conservation, specifically extinct or endangered species in Brazil,
-            with the main character being the Margay Cat (Leopardus wiedii).
-          </p>
-          <p>
-            Over a period of 2 months, I was primarily responsible for gameplay
-            planning, programming, and 3D modeling of environments and objects
-            (excluding character models). The game features two areas: the first
-            being an animal preservation area and the second being a race arena
-            with a water bottle collection element.
-          </p>
-          <div class="video">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/H-28aO-WYOI"
-              frameborder="0"
-              allowfullscreen
-            ></iframe>
+          <div class="tag-container">
+            <span class="tag">Engine: </span>
+            <span class="tag-value">Unity</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Programming: </span>
+            <span class="tag-value">C#</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Experience: </span>
+            <span class="tag-value">Digital</span>
+          </div>
+        </div>
+        <div class="tags">
+          <a href="https://llsnicollas.itch.io/cowgato" target="_blank" title="Game">
+            <i class="fa-solid fa-gamepad"></i>
+          </a>
+          <a href="https://github.com/Collinas/CowgatoPortfolioVersion.git" target="_blank" title="Github Project">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.artstation.com/artwork/m8No31" target="_blank" title="Project Artwork">
+            <i class="fa-brands fa-artstation"></i>
+          </a>
+        </div>
+        <div class="riflogo2">
+          <img width="200" height="200" src="https://img.itch.zone/aW1nLzEzNjgyMDExLnBuZw==/347x500/Yy8ZbD.png" />
+        </div>
+        <p>
+          "Cowgato" was the project I developed during my first semester of
+          Digital Games at PUC Campinas. Its aim was to create a 3D project
+          with an environmental theme. Therefore, I chose to focus on animal
+          conservation, specifically extinct or endangered species in
+          Brazil, with the main character being the Margay Cat (Leopardus
+          wiedii).
+        </p>
+        <p>
+          Over a period of 2 months, I was primarily responsible for
+          gameplay planning, programming, and 3D modeling of environments
+          and objects (excluding character models). The game features two
+          areas: the first being an animal preservation area and the second
+          being a race arena with a water bottle collection element.
+        </p>
+        <div class="video">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/H-28aO-WYOI" frameborder="0"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="project-description hidden" id="project3-description">
+        <h3>Barcelona Code School Projects</h3>
+        <div class="tags">
+          <div class="tag-container">
+            <span class="tag">Build Date: </span>
+            <span class="tag-value">Ongoing</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Category: </span>
+            <span class="tag-value">Game Bootcamp</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Engine: </span>
+            <span class="tag-value">Unity</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Programming: </span>
+            <span class="tag-value">C#</span>
+          </div>
+          <div class="tag-container">
+            <span class="tag">Experience: </span>
+            <span class="tag-value">Digital</span>
+          </div>
+        </div>
+        <div class="tags">
+          <a href="https://llsnicollas.itch.io" target="_blank" title="Game">
+            <i class="fa-solid fa-gamepad"></i>
+          </a>
+          <a href="https://github.com/Collinas/BCSProjects" target="_blank" title="Github Project">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.artstation.com/collinas" target="_blank" title="Project Artwork">
+            <i class="fa-brands fa-artstation"></i>
+          </a>
+        </div>
+        <p>
+          Barcelona Code School idea was to during 2 months build a portfolio while teaching Unity unique points
+          to add more depth to it i decided to imprive my game design skill thinking what I could do better for each
+          game. In the next paragraphs i will describe what results I came with.
+        </p>
+        <p>
+        <h4>Runaway Kittens:</h4> A top down 2d game which the objective was to deliver the cat to its owner, with a
+        simple
+        car control for being a quite simple game I was focused in explore its simplicity to its best focusing
+        in improving its visuals with my own art and doing some simple UI, improved the obstacle spawning so it does
+        not spawn at the player, cat or the owner, make a compass system for making easy to identify where to deliver
+        the cats and make the map to be "procedural" make it visual different eah time.
+        </p>
+        <p>
+        <h4>Snowslide Rush:</h4> A classical snowboard mobile 2d game, with just a torque mechanic and a modifiable
+        sprite I
+        tried to explore the procedural generation in general for the map and the visual spawning, making pits,
+        rechargable
+        boost, add a remove player movement after death and a ambient sound.
+        </p>
+      </div>
+    </div>
+  </div>
+    <div class="info-content hidden" id="career-info">
+      <div class="career-container">
+        <div class="career-column">
+          <h2>Education</h2>
+          <ul class="education-list">
+            <li><br /></li>
+            <h4>
+              Universidade Federal do Rio Grande do Sul, 2019 - 2022
+            </h4>
+            <li>
+              Studied towards a Bachelor's in Economics, completing
+              partial coursework over a limited number of semesters.
+            </li>
+            <li><br /></li>
+            <h4>PUC Campinas, 2023 - 2026</h4>
+            <li>Pursuing a technical degree in Digital Games at PUC.</li>
+            <li><br /></li>
+            <h4>Barcelona Code School, 2024</h4>
+            <li>
+              Participating in a Game Development Bootcamp with a
+              specialized focus on Unity and its tools, along with C#
+              programming."
+            </li>
+            <li><br /></li>
+          </ul>
+        </div>
+        <div class="career-column">
+          <h2>Work Experience</h2>
+          <ul class="work-experience-list">
+            <li><br /></li>
+            <h4>Inbook Accounting Services, 2019 - 2020</h4>
+            <li>
+              Internship focusing on handling invoices, tax obligations,
+              and organizing balance sheets.
+            </li>
+            <li><br /></li>
+            <h4>
+              Freelance programming specialized in R with RStudio, 2020 -
+              2022
+            </h4>
+            <li>
+              FrenchRetro: Supporting and developing an invoicing control
+              system and an order management application, 2020 - 2022.
+            </li>
+            <li>
+              Marketing Reel: Developed an application to display a
+              Hubspot Dashboard using R, RStudio Server, R Shiny Server
+              with AWS integration, 2022.
+            </li>
+            <li>
+              RuralPlan: User interface (UI) design and logic
+              implementation for loan control, 2021.
+            </li>
+            <li>
+              Maldonado Consulting SAS: Data analytics for a softball
+              league, 2021.
+            </li>
+            <li>
+              Sure Holdings: Development of stock management software,
+              2021.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="info-content hidden" id="skills-info">
+    <h2>Skills</h2>
+    <div class="skills-container">
+      <div class="skill">
+        <h4>Engines and 3D Modeling <i class="fa-solid fa-cube"></i></h4>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 80%">Unity - (80%)</div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 60%">Maya - (60%)</div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 50%">
+            Construct3 - (50%)
+          </div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 30%">
+            Blender - (30%)
           </div>
         </div>
       </div>
-        <div class="info-content hidden" id="career-info">
-          <div class="career-container">
-            <div class="career-column">
-              <h2>Education</h2>
-              <ul class="education-list">
-                <li><br /></li>
-                <h4>Universidade Federal do Rio Grande do Sul, 2019 - 2022</h4>
-                <li>
-                  Studied towards a Bachelor's in Economics, completing partial
-                  coursework over a limited number of semesters.
-                </li>
-                <li><br /></li>
-                <h4>PUC Campinas, 2023 - 2024</h4>
-                <li>Pursuing a technical degree in Digital Games at PUC.</li>
-                <li><br /></li>
-                <h4>Barcelona Code School, 2024</h4>
-                <li>
-                  Participating in a Game Development Bootcamp with a
-                  specialized focus on Unity and its tools, along with C#
-                  programming."
-                </li>
-                <li><br /></li>
-              </ul>
-            </div>
-            <div class="career-column">
-              <h2>Work Experience</h2>
-              <ul class="work-experience-list">
-                <li><br /></li>
-                <h4>Inbook Accounting Services, 2019 - 2020</h4>
-                <li>
-                  Internship focusing on handling invoices, tax obligations, and
-                  organizing balance sheets.
-                </li>
-                <li><br /></li>
-                <h4>
-                  Freelance programming specialized in R with RStudio, 2020 -
-                  2022
-                </h4>
-                <li>
-                  FrenchRetro: Supporting and developing an invoicing control
-                  system and an order management application, 2020 - 2022.
-                </li>
-                <li>
-                  Marketing Reel: Developed an application to display a Hubspot
-                  Dashboard using R, RStudio Server, R Shiny Server with AWS
-                  integration, 2022.
-                </li>
-                <li>
-                  RuralPlan: User interface (UI) design and logic implementation
-                  for loan control, 2021.
-                </li>
-                <li>
-                  Maldonado Consulting SAS: Data analytics for a softball
-                  league, 2021.
-                </li>
-                <li>
-                  Sure Holdings: Development of stock management software, 2021.
-                </li>
-              </ul>
-            </div>
+      <div class="skill">
+        <h4>General Tools <i class="fa-solid fa-laptop"></i></h4>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 80%">Office - (80%)</div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 75%">
+            Aseprite - (75%)
           </div>
         </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 30%">
+            Photoshop - (30%)
+          </div>
         </div>
-        <div class="info-content hidden" id="skills-info">
-          <h2>Skills</h2>
-          <div class="skills-container">
-            <div class="skill">
-              <h4>Engines and 3D Modelling</h4>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 70%">Unity - (70%)</div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 50%">
-                  Construct3 - (50%)
-                </div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 60%">Maya - (60%)</div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 25%">
-                  Blender - (25%)
-                </div>
-              </div>
-            </div>
-            <div class="skill">
-              <h4>General Tools</h4>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 80%">Office - (80%)</div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 50%">
-                  Aseprite - (50%)
-                </div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 30%">
-                  Photoshop - (30%)
-                </div>
-              </div>
-            </div>
-            <div class="skill">
-              <h4>Programming</h4>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 60%">C# - (60%)</div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 50%">R - (50%)</div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 40%">HTML - (40%)</div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 40%">
-                  Javascript - (40%)
-                </div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 40%">CSS - (40%)</div>
-              </div>
-            </div>
-            <div class="skill">
-              <h4>Languages</h4>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 95%">
-                  Portuguese (Native) - (95%)
-                </div>
-              </div>
-              <div class="skill-graph">
-                <div class="skill-level" style="width: 80%">
-                  English (Fluent) - (80%)
-                </div>
-              </div>
-            </div>
+      </div>
+      <div class="skill">
+        <h4>Programming <i class="fa-solid fa-code"></i></h4>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 70%">C# - (70%)</div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 60%">R - (60%)</div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 40%">HTML - (40%)</div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 30%">
+            Javascript - (30%)
+          </div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 25%">CSS - (25%)</div>
+        </div>
+      </div>
+      <div class="skill">
+        <h4>Languages <i class="fa-solid fa-language"></i></h4>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 95%">
+            Portuguese (Native) - (95%)
+          </div>
+        </div>
+        <div class="skill-graph">
+          <div class="skill-level" style="width: 80%">
+            English (Fluent) - (80%)
           </div>
         </div>
       </div>
     </div>
-    <div class="bottom-container">
-      <hr class="separator" />
-      <div class="contact-info">
-        <p>For any inquiries or references:</p>
-        <p>Email: nicollas.jp@puccampinas.edu.br</p>
-      </div>
-      <div class="social-links">
-        <a href="https://github.com/LLSnicollas" target="_blank" title="Github">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.artstation.com/llsnicollas" target="_blank" title="Artstation">
-          <i class="fab fa-artstation"></i>
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" title="Linkedin">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="https://www.instagram.com/LLSNICOLLAS/" target="_blank" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
+  </div>
+  <div class="bottom-container" , id="bottom-bar">
+    <hr class="separator" />
+    <div class="contact-info">
+      <p>For any inquiries or references:</p>
+      <p>Email: nicollas.jp@puccampinas.edu.br</p>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      function showInfo(infoId) {
-  const infoContents = document.querySelectorAll(".info-content");
-  infoContents.forEach((content) => {
-    content.classList.add("hidden");
-  });
+    <div class="social-links">
+      <a href="https://github.com/collinas" target="_blank" title="Github">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.artstation.com/collinas" target="_blank" title="Artstation">
+        <i class="fab fa-artstation"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/nicollas-jorge-pereira" target="_blank" title="Linkedin">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://www.instagram.com/nnicollasjorge/" target="_blank" title="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script>
+    function showInfo(infoId) {
+      const infoContents = document.querySelectorAll(".info-content");
+      infoContents.forEach((content) => {
+        if (content.id !== infoId + "-info") {
+          content.classList.add("hidden");
+        }
+      });
 
-  const markers = document.querySelectorAll(".book-marker");
-  markers.forEach((marker) => {
-    marker.classList.remove("selected");
-  });
+      const markers = document.querySelectorAll(".book-marker");
+      markers.forEach((marker) => {
+        if (marker.dataset.info !== infoId) {
+          marker.classList.remove("selected");
+        }
+      });
 
-  const selectedInfo = document.getElementById(infoId + "-info");
-  selectedInfo.classList.remove("hidden");
+      const selectedInfo = document.getElementById(infoId + "-info");
+      selectedInfo.classList.remove("hidden");
 
-  const selectedMarker = document.querySelector(
-    `[onclick="showInfo('${infoId}')"]`
-  );
-  selectedMarker.classList.add("selected");
-}
+      const selectedMarker = document.querySelector(`[data-info="${infoId}"]`);
+      selectedMarker.classList.add("selected");
+    }
 
-function showProjectDescription(projectId) {
-  const projectDescriptions = document.querySelectorAll(".project-description");
-  projectDescriptions.forEach((description) => {
-    description.classList.add("hidden");
-  });
 
-  const selectedDescription = document.getElementById(
-    projectId + "-description"
-  );
-  selectedDescription.classList.remove("hidden");
+    function showProjectDescription(projectId) {
+      const projectDescriptions = document.querySelectorAll(".project-description");
+      projectDescriptions.forEach((description) => {
+        description.classList.add("hidden");
+      });
 
-  const projectCards = document.querySelectorAll(".project-card");
-  projectCards.forEach((card) => {
-    card.classList.remove("selected");
-  });
+      const selectedDescription = document.getElementById(projectId + "-description");
+      selectedDescription.classList.remove("hidden");
 
-  const selectedCard = document.querySelector(
-    `[onclick="showProjectDescription('${projectId}')"]`
-  );
-  selectedCard.classList.add("selected");
-}
+      const projectCards = document.querySelectorAll(".project-card");
+      projectCards.forEach((card) => {
+        card.classList.remove("selected");
+      });
 
-window.onscroll = function () {
-  scrollFunction();
-};
+      const selectedCard = document.querySelector(`[onclick="showProjectDescription('${projectId}')"]`);
+      selectedCard.classList.add("selected");
+    }
 
-function scrollFunction() {
-  var navbar = document.getElementById("navbar");
-  if (
-    document.body.scrollTop > 400 ||
-    document.documentElement.scrollTop > 400
-  ) {
-    navbar.classList.add("fixed-navbar");
-  } else {
-    navbar.classList.remove("fixed-navbar");
-  }
-}
-document.addEventListener("DOMContentLoaded", function () {
-  const aboutMeButton = document.querySelector(".book-marker:first-child");
 
-  aboutMeButton.addEventListener("click", function () {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Smooth scrolling animation
+    window.onscroll = function () {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      var navbar = document.getElementById("navbar");
+      if (
+        document.body.scrollTop > 400 ||
+        document.documentElement.scrollTop > 400
+      ) {
+        navbar.classList.add("fixed-navbar");
+      } else {
+        navbar.classList.remove("fixed-navbar");
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const aboutMeButton = document.querySelector(
+        ".book-marker:first-child"
+      );
+
+      aboutMeButton.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", // Smooth scrolling animation
+        });
+      });
     });
-  });
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const referencesButton = document.querySelector(".book-marker:last-child");
+    document.addEventListener("DOMContentLoaded", function () {
+      const referencesButton = document.querySelector(
+        ".book-marker:last-child"
+      );
 
-  referencesButton.addEventListener("click", function () {
-    const bottomContainer = document.querySelector(".bottom-container");
-    bottomContainer.scrollIntoView({ behavior: "smooth" });
-  });
-});
-    </script>
-  </body>
+      referencesButton.addEventListener("click", function () {
+        const bottomContainer = document.querySelector(".bottom-container");
+        bottomContainer.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    function showImage(element) {
+      const mainPhoto = document.getElementById("main-photo");
+      mainPhoto.src = element.src;
+    }
+
+    function highlightAboutMe() {
+      // Remove highlight from any previously highlighted element
+      const previouslyHighlighted = document.querySelector(".highlighted");
+      if (previouslyHighlighted) {
+        previouslyHighlighted.classList.remove("highlighted");
+      }
+
+      // Add the highlight class to the "about-me" content
+      const aboutMeContent = document.getElementById("about-me");
+      aboutMeContent.classList.add("highlighted");
+    }
+
+    function highlightBottomBar() {
+      // Remove highlight from any previously highlighted element
+      const previouslyHighlighted = document.querySelector(".highlighted");
+      if (previouslyHighlighted) {
+        previouslyHighlighted.classList.remove("highlighted");
+      }
+
+      // Add the highlight class to the "bottom-bar" content
+      const bottomBarContent = document.getElementById("bottom-bar");
+      bottomBarContent.classList.add("highlighted");
+    }
+  </script>
+</body>
+
 </html>
-
